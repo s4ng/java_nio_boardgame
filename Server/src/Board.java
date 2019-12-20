@@ -1,13 +1,14 @@
 import java.util.Random;
 
 public class Board {
-	private int tiles;
-	private char[] board;
+	private int p1 = 0, p2 = 0;
+	public int tiles;
+	public char[] board;
 	
 	public Board(int t) {
 		tiles = t;
 		board = new char[tiles];
-		for(int i = 0; i < tiles; i++) board[i] = '#';
+		for(int i = 0; i < tiles; i++) board[i] = '-';
 	}
 	
 	public void setUpBoard() {
@@ -31,9 +32,45 @@ public class Board {
 			}
 		}
 	}
+	
+	private int playerCheck(char p) {
+		for(int i = 0; i < tiles; i++) {
+			if(board[i] == p) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	public void playerChange(char p, int num) {
+		int pPosition = playerCheck(p);
+
+		if(pPosition + num == '-') {
+			board[pPosition + num] = p;
+			if(pPosition != -1)
+				board[pPosition] = '-';
+		}
+		else if(pPosition + num == 'I') {
+			playerChange(p, pPosition + num - 1);
+			if(pPosition != -1)
+				board[pPosition] = '-';
+		}
+		else if(pPosition + num == 'C') {
+			playerChange(p, pPosition + num + 1);
+			if(pPosition != -1)
+				board[pPosition] = '-';
+		}
+		else {
+			char loser = board[pPosition + num];
+			board[pPosition + num] = p;
+			if(pPosition != -1)
+				board[pPosition] = '-';
+		}
+	}
+
 	public void displayBoard() {
 		for(int i = 0; i < tiles; i++) {
-			System.out.printf("%c ", board[i]);
+			System.out.printf("%c", board[i]);
 		}
 	}
 }

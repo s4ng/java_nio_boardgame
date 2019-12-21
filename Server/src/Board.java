@@ -1,7 +1,6 @@
 import java.util.Random;
 
 public class Board {
-	private int p1 = 0, p2 = 0;
 	public int tiles;
 	public char[] board;
 	

@@ -45,6 +45,9 @@ public class Board {
 	public void playerChange(char p, int num) {
 		int pPosition = playerCheck(p);
 
+		if(pPosition + num > tiles - 1)
+			board[tiles - 1] = p;
+		
 		if(pPosition + num == '-') {
 			board[pPosition + num] = p;
 			if(pPosition != -1)
@@ -72,5 +75,6 @@ public class Board {
 		for(int i = 0; i < tiles; i++) {
 			System.out.printf("%c", board[i]);
 		}
+		System.out.println();
 	}
 }

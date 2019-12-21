@@ -24,7 +24,7 @@ public class Server {
 		// 게임 드라이버로 게임 시작하기
 		GameDriver driver = new GameDriver(b, tom, jerry);
 		
-		//driver.playGame();
+		driver.playGame();
 	}
 
 }
